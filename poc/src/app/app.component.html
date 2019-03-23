@@ -1,0 +1,113 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <hr>
+  <button type="button" class="btn btn-danger deleteClass" (click)="deleteUser()">Delete
+    Record</button>
+  <button type="button" class="btn btn-primary addClass" data-toggle="modal" data-target="#userModal">Add
+    Record</button>
+
+  <table datatable class="row-border hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Superhero Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>Prakhar</td>
+        <td>Jain</td>
+        <td>Thor</td>
+        <td>this.is.prakharjain@gmail.com</td>
+        <td>Male</td>
+        <td>26</td>
+      </tr>
+      <tr *ngFor="let data of userArr; index as i">
+        <td><input type="checkbox" (click)="selectUser(data)"></td>
+        <td>{{data.firstName}}</td>
+        <td>{{data.lastName}}</td>
+        <td>{{data.superHeroName}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.age}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">Add User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname"
+              [(ngModel)]="userData.firstName">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname"
+              [(ngModel)]="userData.lastName">
+          </div>
+          <div class="form-group">
+            <label for="sname">Superhero Name</label>
+            <input type="text" class="form-control" id="sname" placeholder="Enter Superhero Name" name="sname"
+              [(ngModel)]="userData.superHeroName">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email"
+              [(ngModel)]="userData.email">
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male" value="male"
+                name="gender" [(ngModel)]="userData.gender">
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female" value="female"
+                name="gender" [(ngModel)]="userData.gender">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="other" value="other"
+                name="gender" [(ngModel)]="userData.gender">
+              <label class="form-check-label" for="other">Other</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" placeholder="Enter Age" name="age"
+              [(ngModel)]="userData.age">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addUser(userData)" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
